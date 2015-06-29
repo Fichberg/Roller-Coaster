@@ -37,12 +37,14 @@ public class Monitor
 		try{
 			if(car_is_ready)
 			{
-				if(regular_queue == 0 && golden_queue == 0) System.out.println("Passengers for the next ride:");
+				if(regular_queue == 0 && golden_queue == 0) System.out.println("Passengers arriving for the next ride:");
+				System.out.println("P"+number+" ("+ticket_type+")");
 				
-				if(ticket_type == 'G') golden_queue++;
+				if(ticket_type == 'G') { 
+					golden_queue++;
+					if(golden_queue + regular_queue > capacity) regular_queue--;				
+				}
 				else regular_queue++;
-				
-				if(golden_queue + regular_queue <= capacity) System.out.println("P"+number+" ("+ticket_type+")");
 
 				if(golden_queue + regular_queue == capacity)
 				{
